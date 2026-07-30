@@ -3,7 +3,9 @@
 ========================= */
 
 @media (max-width: 690px) {
-  /* HEADER */
+  
+
+/* HEADER */
 
   #main-header {
     padding: 1rem 1.5rem;
@@ -11,23 +13,21 @@
     position: relative;
     transition: border-radius 0.2s ease;
   }
-
   #main-header.menu-open {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-
   #page-name {
     display: flex;
     flex-direction: column;
     line-height: 1.1;
   }
-
   #page-name span {
     margin-top: 0.2rem;
   }
+  
 
-  /* LOGO / STAR */
+/* LOGO / STAR */
 
   #main-header .logo,
   #main-header .brand,
@@ -35,8 +35,9 @@
     max-width: calc(100% - 55px);
     overflow: hidden;
   }
+  
 
-  /* HAMBURGER BUTTON */
+/* HAMBURGER BUTTON */
 
   #main-header #menu-button {
     position: absolute;
@@ -55,25 +56,22 @@
     border: none;
     border-radius: 50%;
     z-index: 30;
-
     transition:
       color 0.3s ease,
       transform 0.3s ease,
       filter 0.3s ease;
   }
-
   #main-header #menu-button:hover {
     color: var(--blue);
-
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8))
       drop-shadow(0 0 12px rgba(127, 179, 255, 0.8));
   }
-
   #main-header #menu-button:active {
     transform: translateY(-60%) scale(1.5);
   }
+  
 
-  /* SATURN ICON */
+/* SATURN ICON */
 
   #main-header #saturn-icon {
     width: 32px;
@@ -84,16 +82,15 @@
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
-
     transform: rotate(10deg);
     transition: transform 0.35s ease;
   }
-
   #main-header.menu-open #saturn-icon {
     transform: rotate(-15deg);
   }
+  
 
-  /* NAVIGATION */
+/* NAVIGATION */
 
   .navigation {
     position: absolute;
@@ -107,7 +104,6 @@
       opacity 0.2s ease,
       transform 0.4s;
   }
-
   .navigation ul {
     display: flex;
     flex-direction: row;
@@ -122,20 +118,17 @@
     border-radius: 0 0 10px 10px;
     overflow: hidden;
   }
-
   .navigation.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
   }
-
   .navigation li {
     flex: 1 1 0;
     min-width: 0;
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .navigation a {
     position: relative;
     overflow: hidden;
@@ -152,11 +145,9 @@
     border-radius: 0 !important;
     transition: color 0.3s ease;
   }
-
   .navigation a::before {
     display: none;
   }
-
   .navigation a::after {
     content: "";
     position: absolute;
@@ -167,19 +158,16 @@
     transition: transform 0.5s ease;
     z-index: -1;
   }
-
   .navigation a:hover,
   .navigation a.active {
     color: var(--white);
     transform: none;
     box-shadow: none;
   }
-
   .navigation a:hover::after,
   .navigation a.active::after {
     transform: scaleY(1);
   }
-
   .apod {
     margin-right: 0;
     a::after {
@@ -213,7 +201,6 @@
         transform 0.4s ease;
     }
   }
-
   @keyframes apod-tooltip {
     0%,
     55% {
@@ -223,7 +210,6 @@
         0 0 6px rgba(0, 150, 255, 0.25),
         0 0 15px rgba(0, 150, 255, 0.15);
     }
-
     60% {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -231,7 +217,6 @@
         0 0 8px rgba(0, 150, 255, 0.45),
         0 0 18px rgba(0, 150, 255, 0.25);
     }
-
     65% {
       opacity: 1;
       transform: translateX(-50%) translateY(-3px);
@@ -239,7 +224,6 @@
         0 0 14px rgba(0, 150, 255, 0.45),
         0 0 28px rgba(0, 150, 255, 0.25);
     }
-
     75% {
       opacity: 1;
       transform: translateX(-50%) translateY(3px);
@@ -247,7 +231,6 @@
         0 0 8px rgba(0, 150, 255, 0.35),
         0 0 20px rgba(0, 150, 255, 0.2);
     }
-
     85% {
       opacity: 1;
       transform: translateX(-50%) translateY(-3px);
@@ -255,12 +238,10 @@
         0 0 14px rgba(0, 150, 255, 0.45),
         0 0 28px rgba(0, 150, 255, 0.25);
     }
-
     90% {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-
     100% {
       opacity: 0;
       transform: translateX(-50%) translateY(-8px);
@@ -269,11 +250,9 @@
         0 0 15px rgba(0, 150, 255, 0.15);
     }
   }
-
   #home-page {
     flex-direction: column;
     align-items: center;
-
     .hero {
       .search-box {
         flex-direction: column;
@@ -284,11 +263,12 @@
           width: 100%;
         }
       }
-
       flex-direction: column;
       align-items: center;
     }
-    /* =========================
+    
+
+/* =========================
    NASA GALLERY MOBILE
 ========================= */
 
@@ -297,29 +277,22 @@
       display: flex;
       justify-content: center;
     }
-
     .gallery-container {
       width: 100%;
       height: auto;
       min-height: 0;
-
       padding: 1rem;
-
       border-radius: 15px;
     }
-
     .gallery-header {
       margin-bottom: 1rem;
     }
-
     .gallery-header h2 {
       font-size: 1.4rem;
     }
-
     .gallery-header p {
       font-size: 0.9rem;
     }
-
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -328,57 +301,46 @@
       overflow-y: auto;
       padding-right: 0;
     }
-
     .image-card img {
       width: 100%;
       height: 120px;
-
       object-fit: cover;
     }
-
     .card-content {
       padding: 0.7rem;
     }
-
     .card-content h3 {
       font-size: 0.75rem;
     }
-
     .preview-btn {
       padding: 0.6rem;
       font-size: 0.8rem;
     }
 
-    /* scrollbar */
+/* scrollbar */
 
     .gallery-grid::-webkit-scrollbar {
       display: none;
     }
   }
-
   #main-header {
     background: #05070d !important;
   }
-
   .navigation ul {
     background: #05070d !important;
   }
-
   #main-footer {
     background: #05070d !important;
   }
-
   #home-page .hero .search-box,
   .gallery-container,
   .image-card,
   .preview-btn {
     background: rgba(5, 7, 13, 0.98) !important;
   }
-
   #home-page .hero .search-box {
     border-color: rgba(127, 179, 255, 0.2) !important;
   }
-
   .preview-btn {
     background: rgba(7, 26, 51, 0.98) !important;
   }
