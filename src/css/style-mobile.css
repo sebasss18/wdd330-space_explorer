@@ -56,6 +56,22 @@
     border: none;
     border-radius: 50%;
     z-index: 30;
+
+    transition:
+      color 0.3s ease,
+      transform 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  #main-header #menu-button:hover {
+    color: var(--blue);
+
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8))
+      drop-shadow(0 0 12px rgba(127, 179, 255, 0.8));
+  }
+
+  #main-header #menu-button:active {
+    transform: translateY(-50%) scale(1.1);
   }
 
   /* SATURN ICON */
