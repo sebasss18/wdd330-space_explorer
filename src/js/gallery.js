@@ -22,7 +22,7 @@ export async function loadGallery() {
     const images = responses
       .flatMap((data) => data.collection.items)
       .filter((item) => item.links?.[0]?.href)
-      .slice(0, 20);
+      .slice(0, 30);
 
     images.forEach((item) => {
       const title = item.data[0].title;
