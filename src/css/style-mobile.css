@@ -13,6 +13,11 @@
     transition: border-radius 0.2s ease;
   }
 
+  #main-header.menu-open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   #page-name {
     display: flex;
     flex-direction: column;
