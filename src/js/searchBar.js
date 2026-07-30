@@ -1,4 +1,5 @@
-const gallery = document.querySelector("#gallery-grid");
+import { renderImages } from "./gallery.js";
+
 const searchInput = document.querySelector(".search-box input");
 const searchForm = document.querySelector(".search-box");
 
@@ -16,8 +17,6 @@ export function initSearch() {
 
 async function searchImages(query) {
   try {
-    gallery.innerHTML = "";
-
     const response = await fetch(
       `https://images-api.nasa.gov/search?q=${query}&media_type=image`,
     );
@@ -28,27 +27,7 @@ async function searchImages(query) {
       .filter((item) => item.links?.[0]?.href)
       .slice(0, 20);
 
-    images.forEach((item) => {
-      const title = item.data[0].title;
-      const image = item.links[0].href;
-
-      gallery.insertAdjacentHTML(
-        "beforeend",
-        `
-          <article class="image-card">
-            <img src="${image}" alt="${title}">
-
-            <div class="card-content">
-              <h3>${title}</h3>
-
-              <button class="preview-btn">
-                Preview
-              </button>
-            </div>
-          </article>
-        `,
-      );
-    });
+    renderImages(images);
   } catch (error) {
     console.error("Error searching NASA images:", error);
   }
