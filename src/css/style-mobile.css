@@ -9,7 +9,6 @@
     padding: 1rem 1.5rem;
     padding-right: 70px;
     position: relative;
-    z-index: 20;
     transition: border-radius 0.2s ease;
   }
 
@@ -355,5 +354,32 @@
     .gallery-grid::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  #main-header {
+    background: #05070d !important;
+  }
+
+  .navigation ul {
+    background: #05070d !important;
+  }
+
+  #main-footer {
+    background: #05070d !important;
+  }
+
+  #home-page .hero .search-box,
+  .gallery-container,
+  .image-card,
+  .preview-btn {
+    background: rgba(5, 7, 13, 0.98) !important;
+  }
+
+  #home-page .hero .search-box {
+    border-color: rgba(127, 179, 255, 0.2) !important;
+  }
+
+  .preview-btn {
+    background: rgba(7, 26, 51, 0.98) !important;
   }
 }

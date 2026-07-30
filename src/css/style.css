@@ -28,7 +28,24 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: var(--font-body);
-  background: #000;
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(255, 255, 255, 0.06),
+      transparent 0.35%
+    ),
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(255, 255, 255, 0.05),
+      transparent 0.25%
+    ),
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(255, 255, 255, 0.04),
+      transparent 0.2%
+    ),
+    #000;
+  background-repeat: no-repeat;
   color: var(--white);
   overflow-x: hidden;
 }
@@ -239,6 +256,23 @@ h4,
   overflow: hidden;
   pointer-events: none;
   z-index: -1;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(255, 255, 255, 0.08),
+      transparent 0.4%
+    ),
+    radial-gradient(
+      circle at 80% 18%,
+      rgba(255, 255, 255, 0.06),
+      transparent 0.3%
+    ),
+    radial-gradient(
+      circle at 50% 75%,
+      rgba(255, 255, 255, 0.05),
+      transparent 0.25%
+    );
+  background-repeat: no-repeat;
   span {
     position: absolute;
     width: 80px;
@@ -388,8 +422,8 @@ h4,
       gap: 0.5rem;
       padding: 0.5rem;
 
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(127, 179, 255, 0.35);
+      background: rgba(5, 7, 13, 0.95);
+      border: 1px solid rgba(127, 179, 255, 0.25);
       border-radius: 50px;
       backdrop-filter: blur(10px);
 
@@ -513,7 +547,7 @@ h4,
 
   padding: 1.5rem;
 
-  background: var(--glass);
+  background: rgba(7, 26, 51, 0.95);
 
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -554,7 +588,7 @@ h4,
   display: flex;
   flex-direction: column;
 
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(5, 7, 13, 0.92);
 
   border: 1px solid var(--border);
   border-radius: 12px;
