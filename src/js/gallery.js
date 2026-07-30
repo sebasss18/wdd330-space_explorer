@@ -12,9 +12,7 @@ export async function loadGallery() {
     const responses = await Promise.all(
       queries.map((query) =>
         fetch(
-          `https://images-api.nasa.gov/search?q=${query}&media_type=image``https:
-
-//images-api.nasa.gov/search?q=${query}&media_type=image`,
+          `https://images-api.nasa.gov/search?q=${query}&media_type=image`,
         ).then((response) => response.json()),
       ),
     );
@@ -29,7 +27,6 @@ export async function loadGallery() {
       const image = item.links[0].href;
       gallery.insertAdjacentHTML(
         "beforeend",
-
         `
           <article class="image-card">
 
@@ -56,27 +53,6 @@ export async function loadGallery() {
 
             </div>
 
-          </article>
-        ``
-          <article class="image-card">
-            <img
-              src="${image}"
-              alt="${title}"
-            >
-            <div class="card-content">
-              <h3>
-                ${title}
-              </h3>
-              <button
-                class="preview-btn"
-                type="button"
-                data-title="${title}"
-                data-image="${image}"
-                data-description="${description.replace(/"/g, "&quot;")}"
-              >
-                Preview
-              </button>
-            </div>
           </article>
         `,
       );
@@ -111,38 +87,23 @@ function openModal(title, image, description) {
         ✕
       </button>
 
+
       <img
         src="${image}"
         alt="${title}"
       >
 
+
       <h2>
         ${title}
       </h2>
+
 
       <p>
         ${description}
       </p>
 
-    </div>
-  ``
-    <div class="modal-content">
-      <button
-        class="close-modal"
-        type="button"
-      >
-        ✕
-      </button>
-      <img
-        src="${image}"
-        alt="${title}"
-      >
-      <h2>
-        ${title}
-      </h2>
-      <p>
-        ${description}
-      </p>
+
     </div>
   `;
   document.body.appendChild(modal);
