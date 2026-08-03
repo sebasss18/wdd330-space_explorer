@@ -853,3 +853,31 @@ h4,
   transform: scale(1.03);
   box-shadow: 0 0 20px rgba(255, 90, 90, 0.25);
 }
+
+.favorite-message {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 1rem 1.5rem;
+  background: var(--glass);
+  border: 1px solid var(--blue);
+  border-radius: 12px;
+  color: var(--white);
+  font-family: var(--font-body);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(127, 179, 255, 0.25);
+  z-index: 9999;
+  animation: messageIn 0.3s ease;
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
