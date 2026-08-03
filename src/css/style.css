@@ -615,3 +615,241 @@ h4,
     transform: scale(0.5);
   }
 }
+/* PLANETS PAGE */
+.planets-page {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.planets-container {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 2rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.planets-container h1 {
+  text-align: center;
+  font-family: var(--font-title);
+  color: var(--white);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.planets-container > p {
+  text-align: center;
+  color: var(--gray-light);
+  font-family: var(--font-body);
+  margin-bottom: 2rem;
+}
+
+.planets-container .gallery-grid {
+  max-height: none;
+  overflow: visible;
+  align-items: start;
+  grid-auto-rows: max-content;
+}
+
+.planets-container .image-card {
+  background: rgba(7, 26, 51, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  align-self: start;
+}
+
+.planets-container .image-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.planets-container .image-card h3 {
+  color: var(--white);
+  font-family: var(--font-title);
+  font-size: 1rem;
+  padding: 1rem 0.8rem 0;
+  min-height: 70px;
+}
+
+.planet-hint {
+  color: var(--gray-light);
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+}
+
+.planet-description {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  color: var(--gray-light);
+  text-align: center;
+  padding: 0 1rem;
+  margin: 0;
+  transition:
+    height 0.4s ease,
+    opacity 0.4s ease,
+    padding 0.4s ease;
+}
+
+.image-card.show-description .planet-hint {
+  display: none;
+}
+
+.image-card.show-description .planet-description {
+  height: auto;
+  min-height: 120px;
+  opacity: 1;
+  padding: 1rem;
+}
+
+/* FAVORITE PLANETS*/
+
+.planets-page {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.planets-container {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 2rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.planets-container h1 {
+  color: var(--white);
+  font-family: var(--font-title);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.image-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(7, 26, 51, 0.75);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.image-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 25px rgba(127, 179, 255, 0.25);
+}
+
+.image-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+.image-card h3 {
+  color: var(--white);
+  font-family: var(--font-title);
+  font-size: 1rem;
+  margin: 1rem 0;
+  line-height: 1.4;
+}
+
+.favorite-btn {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--blue);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.favorite-btn:hover {
+  background: var(--blue);
+  color: var(--black);
+  transform: scale(1.02);
+}
+
+.planet-hint {
+  color: var(--gray-light);
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.planet-description {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  color: var(--gray-light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.5s ease,
+    margin 0.5s ease;
+}
+
+.image-card.show-description .planet-hint {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+.image-card.show-description .planet-description {
+  max-height: 250px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.remove-btn {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.7rem;
+  border: 1px solid rgba(255, 90, 90, 0.35);
+  border-radius: 50px;
+  background: transparent;
+  color: #ff8a8a;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #ff8a8a;
+  color: var(--black);
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 90, 90, 0.25);
+}

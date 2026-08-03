@@ -3,9 +3,7 @@
 ========================= */
 
 @media (max-width: 690px) {
-  
-
-/* HEADER */
+  /* HEADER */
 
   #main-header {
     padding: 1rem 1.5rem;
@@ -25,9 +23,8 @@
   #page-name span {
     margin-top: 0.2rem;
   }
-  
 
-/* LOGO / STAR */
+  /* LOGO / STAR */
 
   #main-header .logo,
   #main-header .brand,
@@ -35,9 +32,8 @@
     max-width: calc(100% - 55px);
     overflow: hidden;
   }
-  
 
-/* HAMBURGER BUTTON */
+  /* HAMBURGER BUTTON */
 
   #main-header #menu-button {
     position: absolute;
@@ -69,9 +65,8 @@
   #main-header #menu-button:active {
     transform: translateY(-60%) scale(1.5);
   }
-  
 
-/* SATURN ICON */
+  /* SATURN ICON */
 
   #main-header #saturn-icon {
     width: 32px;
@@ -88,9 +83,8 @@
   #main-header.menu-open #saturn-icon {
     transform: rotate(-15deg);
   }
-  
 
-/* NAVIGATION */
+  /* NAVIGATION */
 
   .navigation {
     position: absolute;
@@ -266,9 +260,8 @@
       flex-direction: column;
       align-items: center;
     }
-    
 
-/* =========================
+    /* =========================
    NASA GALLERY MOBILE
 ========================= */
 
@@ -317,7 +310,7 @@
       font-size: 0.8rem;
     }
 
-/* scrollbar */
+    /* scrollbar */
 
     .gallery-grid::-webkit-scrollbar {
       display: none;
@@ -343,5 +336,17 @@
   }
   .preview-btn {
     background: rgba(7, 26, 51, 0.98) !important;
+  }
+
+  .planets-container {
+    padding: 1rem;
+  }
+
+  #gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-card img {
+    height: 220px;
   }
 }

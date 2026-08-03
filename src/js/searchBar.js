@@ -4,6 +4,8 @@ const searchInput = document.querySelector(".search-box input");
 const searchForm = document.querySelector(".search-box");
 
 export function initSearch() {
+  if (!searchForm || !searchInput) return;
+
   searchForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -32,5 +34,3 @@ async function searchImages(query) {
     console.error("Error searching NASA images:", error);
   }
 }
-
-initSearch();

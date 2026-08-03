@@ -2,6 +2,8 @@ const gallery = document.querySelector("#gallery-grid");
 let galleryData = [];
 
 export async function loadGallery() {
+  if (!gallery) return;
+
   try {
     const queries = [
       "milky way",
@@ -11,6 +13,7 @@ export async function loadGallery() {
       "deep space",
       "solar system",
     ];
+
     const responses = await Promise.all(
       queries.map((query) =>
         fetch(
@@ -18,10 +21,12 @@ export async function loadGallery() {
         ).then((response) => response.json()),
       ),
     );
+
     const images = responses
       .flatMap((data) => data.collection.items)
       .filter((item) => item.links?.[0]?.href)
       .slice(0, 30);
+
     renderImages(images);
   } catch (error) {
     console.error("Error loading NASA images:", error);
@@ -29,6 +34,8 @@ export async function loadGallery() {
 }
 
 export function renderImages(images) {
+  if (!gallery) return;
+
   galleryData = [];
   gallery.innerHTML = "";
 
@@ -56,15 +63,17 @@ export function renderImages(images) {
   });
 }
 
-gallery.addEventListener("click", (event) => {
-  const button = event.target.closest(".preview-btn");
-  if (!button) return;
+if (gallery) {
+  gallery.addEventListener("click", (event) => {
+    const button = event.target.closest(".preview-btn");
+    if (!button) return;
 
-  const item = galleryData[button.dataset.id];
-  if (!item) return;
+    const item = galleryData[button.dataset.id];
+    if (!item) return;
 
-  openModal(item.title, item.image, item.description);
-});
+    openModal(item.title, item.image, item.description);
+  });
+}
 
 function openModal(title, image, description) {
   document.querySelector(".image-modal")?.remove();
@@ -93,5 +102,3 @@ function openModal(title, image, description) {
     }
   });
 }
-
-loadGallery();
