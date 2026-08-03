@@ -49,8 +49,9 @@ function renderImages(images) {
 
   document.querySelectorAll(".favorite-btn").forEach((button, index) => {
     button.addEventListener("click", () => {
-      saveFavorite(images[index]);
-      window.location.href = "favorites.html";
+      const added = saveFavorite(images[index]);
+
+      showMessage(added ? "Added to favorites" : "Already in favorites");
     });
   });
 }
@@ -67,8 +68,25 @@ function saveFavorite(item) {
 
   const exists = favorites.some((planet) => planet.name === favorite.name);
 
-  if (!exists) {
-    favorites.push(favorite);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+  if (exists) {
+    return false;
   }
+
+  favorites.push(favorite);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+  return true;
+}
+
+function showMessage(message) {
+  const notification = document.createElement("div");
+
+  notification.className = "favorite-message";
+  notification.textContent = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.remove();
+  }, 2000);
 }
