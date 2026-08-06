@@ -985,36 +985,3 @@ h4,
 .wiki-button:active {
   transform: scale(0.98);
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 690px) {
-  .fact-container {
-    padding: 1.25rem;
-    margin-top: 20px;
-  }
-
-  .fact-container h1 {
-    font-size: 1.8rem;
-  }
-
-  .fact-content h2 {
-    font-size: 1.5rem;
-  }
-
-  .fact-image {
-    max-height: 300px;
-  }
-
-  .fact-description,
-  .fact-summary p {
-    font-size: 0.95rem;
-  }
-
-  .wiki-button {
-    width: 100%;
-    text-align: center;
-  }
-}
