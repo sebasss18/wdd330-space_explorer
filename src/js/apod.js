@@ -1,4 +1,20 @@
-const NASA_KEY = import.meta.env.NASA_API_KEY;
+const NASA_KEY =
+  import.meta.env.VITE_NASA_API_KEY || import.meta.env.NASA_API_KEY || "";
+
+function setText(selector, value) {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.textContent = value;
+  }
+}
+
+function setImage(src, alt) {
+  const element = document.querySelector("#fact-image");
+  if (element) {
+    element.src = src;
+    element.alt = alt;
+  }
+}
 
 export async function loadApodPage() {
   await loadApod();
@@ -6,6 +22,16 @@ export async function loadApodPage() {
 
 async function loadApod() {
   try {
+    if (!NASA_KEY) {
+      setText("#fact-title", "APOD unavailable");
+      setText("#fact-description", "The NASA API key is missing.");
+      setText(
+        "#fact-text",
+        "Add VITE_NASA_API_KEY to your environment to enable this page.",
+      );
+      return;
+    }
+
     const response = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`,
     );
@@ -18,14 +44,18 @@ async function loadApod() {
 
     if (data.media_type !== "image") return;
 
-    document.querySelector("#fact-image").src = data.url;
-    document.querySelector("#fact-image").alt = data.title;
-    document.querySelector("#fact-title").textContent = data.title;
-    document.querySelector("#fact-description").textContent = data.explanation;
+    setImage(data.url, data.title);
+    setText("#fact-title", data.title);
+    setText(
+      "#fact-description",
+      data.explanation || "No description available.",
+    );
 
     await loadWikipediaFact(data.title);
   } catch (error) {
     console.error("NASA API:", error);
+    setText("#fact-title", "Unable to load APOD");
+    setText("#fact-description", "Please try again later.");
   }
 }
 
@@ -41,11 +71,11 @@ async function loadWikipediaFact(title) {
 
     if (!data.extract) return;
 
-    document.querySelector("#fact-text").textContent = data.extract;
+    setText("#fact-text", data.extract);
 
-    if (data.content_urls?.desktop?.page) {
-      document.querySelector("#wiki-button").href =
-        data.content_urls.desktop.page;
+    const wikiButton = document.querySelector("#wiki-button");
+    if (wikiButton && data.content_urls?.desktop?.page) {
+      wikiButton.href = data.content_urls.desktop.page;
     }
   } catch (error) {
     console.error("Wikipedia API:", error);
