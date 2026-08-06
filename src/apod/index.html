@@ -5,18 +5,57 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>APOD | Space Explorer</title>
+    <title>Space Fact | Space Explorer</title>
 
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/style-mobile.css" />
+
     <script type="module" src="../js/main.js"></script>
   </head>
 
   <body>
     <header id="main-header"></header>
 
-    <main>
-      <h1>Astronomic Photo Of The Day</h1>
+    <main class="fact-page">
+      <section class="fact-container">
+        <h1>Space Fact of the Day</h1>
+
+        <article class="fact-card">
+          <img
+            id="fact-image"
+            class="fact-image"
+            src="../images/placeholder.jpg"
+            alt="Astronomy Picture of the Day"
+          />
+
+          <div class="fact-content">
+            <h2 id="fact-title">Loading...</h2>
+
+            <p id="fact-description" class="fact-description">
+              The image description will appear here.
+            </p>
+
+            <div class="fact-summary">
+              <h3>Did You Know?</h3>
+
+              <p id="fact-text">
+                A fascinating fact about today's astronomical object will appear
+                here after retrieving information from Wikipedia.
+              </p>
+            </div>
+
+            <a
+              id="wiki-button"
+              class="wiki-button"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read Full Wikipedia Article
+            </a>
+          </div>
+        </article>
+      </section>
     </main>
 
     <footer id="main-footer"></footer>
