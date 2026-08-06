@@ -4,7 +4,7 @@ import { loadGallery } from "./gallery.js";
 import { loadPlanets } from "./planets-gallery.js";
 import { initSearch } from "./searchBar.js";
 import { loadFavorites } from "./favorites.js";
-import { loadSpaceFact } from "./spaceFact.js";
+import { loadApodPage } from "./apod.js";
 
 async function init() {
   await loadHeaderFooter();
@@ -22,7 +22,7 @@ async function init() {
   }
 
   if (path.includes("/apod/")) {
-    await loadSpaceFact();
+    await loadApodPage();
   }
 
   if (path.includes("/favorites/")) {

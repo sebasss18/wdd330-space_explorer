@@ -1,50 +1,7 @@
 const NASA_KEY = import.meta.env.VITE_NASA_KEY;
 
-const topics = [
-  "Black hole",
-  "Supernova",
-  "Nebula",
-  "Galaxy",
-  "Milky Way",
-  "Andromeda Galaxy",
-  "Neutron star",
-  "White dwarf",
-  "Red giant",
-  "Planet",
-  "Exoplanet",
-  "Mars",
-  "Jupiter",
-  "Saturn",
-  "Europa (moon)",
-  "Titan (moon)",
-  "Moon",
-  "Sun",
-  "Solar System",
-  "Comet",
-  "Asteroid",
-  "Meteor",
-  "Meteorite",
-  "Aurora",
-  "Pulsar",
-  "Quasar",
-  "Dark matter",
-  "Dark energy",
-  "Big Bang",
-  "Universe",
-  "Cosmic microwave background",
-  "Orion Nebula",
-  "Crab Nebula",
-  "Eagle Nebula",
-  "Horsehead Nebula",
-  "Betelgeuse",
-  "Sirius",
-  "Polaris",
-  "Alpha Centauri",
-  "Cassiopeia (constellation)",
-];
-
-export async function loadSpaceFact() {
-  await Promise.all([loadApod(), loadWikipediaFact()]);
+export async function loadApodPage() {
+  await loadApod();
 }
 
 async function loadApod() {
@@ -52,6 +9,10 @@ async function loadApod() {
     const response = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`,
     );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch APOD");
+    }
 
     const data = await response.json();
 
@@ -61,29 +22,31 @@ async function loadApod() {
     document.querySelector("#fact-image").alt = data.title;
     document.querySelector("#fact-title").textContent = data.title;
     document.querySelector("#fact-description").textContent = data.explanation;
+
+    await loadWikipediaFact(data.title);
   } catch (error) {
     console.error("NASA API:", error);
   }
 }
 
-async function loadWikipediaFact() {
+async function loadWikipediaFact(title) {
   try {
-    // Cambia automáticamente cada día
-    const today = new Date();
-    const day = Math.floor(today.getTime() / 86400000);
-
-    const topic = topics[day % topics.length];
-
     const response = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`,
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
     );
+
+    if (!response.ok) return;
 
     const data = await response.json();
 
+    if (!data.extract) return;
+
     document.querySelector("#fact-text").textContent = data.extract;
 
-    document.querySelector("#wiki-button").href =
-      data.content_urls.desktop.page;
+    if (data.content_urls?.desktop?.page) {
+      document.querySelector("#wiki-button").href =
+        data.content_urls.desktop.page;
+    }
   } catch (error) {
     console.error("Wikipedia API:", error);
   }
