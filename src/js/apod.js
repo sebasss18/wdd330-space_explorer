@@ -1,4 +1,4 @@
-const NASA_KEY = import.meta.env.VITE_NASA_KEY;
+const NASA_KEY = import.meta.env.NASA_API_KEY;
 
 export async function loadApodPage() {
   await loadApod();
