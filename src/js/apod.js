@@ -17,6 +17,12 @@ function setImage(src, alt) {
 }
 
 export async function loadApodPage() {
+  if (document.readyState === "loading") {
+    await new Promise((resolve) => {
+      document.addEventListener("DOMContentLoaded", resolve, { once: true });
+    });
+  }
+
   await loadApod();
 }
 
