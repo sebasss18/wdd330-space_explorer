@@ -6,14 +6,109 @@ const NASA_KEY =
 const SPACE_TOPICS = [
   "Space",
   "Astronomy",
-  "Solar System",
-  "Black hole",
-  "Mars",
-  "Moon",
-  "Galaxy",
-  "Nebula",
-  "Star",
+  "Universe",
   "Cosmos",
+  "Outer space",
+  "Solar System",
+  "Sun",
+  "Mercury",
+  "Venus",
+  "Earth",
+  "Moon",
+  "Mars",
+  "Jupiter",
+  "Saturn",
+  "Uranus",
+  "Neptune",
+  "Pluto",
+  "Exoplanet",
+  "Planet",
+  "Dwarf planet",
+  "Asteroid",
+  "Asteroid belt",
+  "Comet",
+  "Meteor",
+  "Meteorite",
+  "Meteoroid",
+  "Kuiper Belt",
+  "Oort Cloud",
+  "Galaxy",
+  "Milky Way",
+  "Andromeda Galaxy",
+  "Whirlpool Galaxy",
+  "Sombrero Galaxy",
+  "Nebula",
+  "Orion Nebula",
+  "Crab Nebula",
+  "Eagle Nebula",
+  "Ring Nebula",
+  "Horsehead Nebula",
+  "Lagoon Nebula",
+  "Star",
+  "Protostar",
+  "Red giant",
+  "White dwarf",
+  "Brown dwarf",
+  "Neutron star",
+  "Pulsar",
+  "Magnetar",
+  "Binary star",
+  "Supernova",
+  "Hypernova",
+  "Black hole",
+  "Supermassive black hole",
+  "Event horizon",
+  "Accretion disk",
+  "Quasar",
+  "Dark matter",
+  "Dark energy",
+  "Big Bang",
+  "Cosmic microwave background",
+  "Expansion of the universe",
+  "Gravity",
+  "General relativity",
+  "Space-time",
+  "Light-year",
+  "Parsec",
+  "Constellation",
+  "Cassiopeia",
+  "Orion",
+  "Ursa Major",
+  "Polaris",
+  "Sirius",
+  "Betelgeuse",
+  "Rigel",
+  "Alpha Centauri",
+  "Proxima Centauri",
+  "Hubble Space Telescope",
+  "James Webb Space Telescope",
+  "International Space Station",
+  "Apollo program",
+  "Apollo 11",
+  "Voyager 1",
+  "Voyager 2",
+  "Cassini–Huygens",
+  "Mars Rover",
+  "Curiosity",
+  "Perseverance",
+  "Ingenuity",
+  "Artemis program",
+  "Space Shuttle",
+  "Rocket",
+  "Satellite",
+  "Space exploration",
+  "NASA",
+  "European Space Agency",
+  "SpaceX",
+  "Blue Origin",
+  "Cosmology",
+  "Astrophysics",
+  "Astronomical object",
+  "Observable universe",
+  "Interstellar medium",
+  "Interstellar travel",
+  "Extraterrestrial life",
+  "Habitable zone",
 ];
 
 let apodPageLoaded = false;
@@ -47,63 +142,60 @@ export async function loadApodPage() {
 }
 
 async function loadApod() {
-  try {
-    const response = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`,
-    );
+  const cached = getCachedData();
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch APOD");
-    }
-
-    const data = await response.json();
-
-    if (data.media_type !== "image") {
-      throw new Error("APOD response was not an image.");
-    }
-
-    setImage(data.url, data.title);
-    setText("#fact-title", data.title);
-    setText(
-      "#fact-description",
-      data.explanation || "No description available.",
-    );
-
-    await loadWikipediaFact(data.title);
-  } catch (error) {
-    console.error("NASA API:", error);
-
-    const topic = SPACE_TOPICS[Math.floor(Math.random() * SPACE_TOPICS.length)];
-    const fallbackTitle = `Space topic: ${topic}`;
-    const fallbackDescription = `A space-themed article from Wikipedia will appear here as a fun fact.`;
-
-    setImage("/images/placeholder.jpg", fallbackTitle);
-    setText("#fact-title", fallbackTitle);
-    setText("#fact-description", fallbackDescription);
-
-    await loadWikipediaFact(topic);
-  }
-}
-
-async function loadWikipediaFact(title) {
-  try {
-    const response = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
-    );
-
-    if (!response.ok) return;
-
-    const data = await response.json();
-
-    if (!data.extract) return;
-
-    setText("#fact-text", data.extract);
+  if (cached) {
+    setImage(cached.image, cached.title);
+    setText("#fact-title", cached.title);
+    setText("#fact-description", cached.description);
+    setText("#fact-text", cached.summary);
 
     const wikiButton = document.querySelector("#wiki-button");
-    if (wikiButton && data.content_urls?.desktop?.page) {
-      wikiButton.href = data.content_urls.desktop.page;
+    if (wikiButton) wikiButton.href = cached.link;
+
+    return;
+  }
+
+  try {
+    const topic = SPACE_TOPICS[Math.floor(Math.random() * SPACE_TOPICS.length)];
+
+    const [nasaResponse, wikiResponse] = await Promise.all([
+      fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`),
+      fetch(
+        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`,
+      ),
+    ]);
+
+    const nasaData = await nasaResponse.json();
+    const wikiData = await wikiResponse.json();
+
+    if (nasaData.media_type === "image") {
+      setImage(nasaData.url, nasaData.title);
+      setText("#fact-title", nasaData.title);
+      setText("#fact-description", nasaData.explanation);
     }
+
+    let summary = "";
+    let link = "#";
+
+    if (wikiData.extract) {
+      summary = wikiData.extract;
+      link = wikiData.content_urls.desktop.page;
+
+      setText("#fact-text", summary);
+
+      const wikiButton = document.querySelector("#wiki-button");
+      if (wikiButton) wikiButton.href = link;
+    }
+
+    saveCachedData({
+      image: nasaData.url,
+      title: nasaData.title,
+      description: nasaData.explanation,
+      summary,
+      link,
+    });
   } catch (error) {
-    console.error("Wikipedia API:", error);
+    console.error(error);
   }
 }
