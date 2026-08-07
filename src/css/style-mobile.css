@@ -349,4 +349,73 @@
   .image-card img {
     height: 220px;
   }
+
+  .fact-page {
+    padding: 1rem 0.8rem;
+  }
+
+  /* APOD */
+
+  .fact-container {
+    margin: 10px auto 0;
+    padding: 1rem;
+
+    border-radius: 15px;
+  }
+
+  .fact-container h1 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .fact-card {
+    gap: 0.8rem;
+  }
+
+  .fact-image {
+    max-height: 280px;
+    border-radius: 12px;
+  }
+
+  .fact-content {
+    gap: 0.6rem;
+  }
+
+  .fact-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .fact-description {
+    line-height: 1.1;
+
+    text-align: left;
+
+    font-size: 0.95rem;
+  }
+
+  .fact-summary {
+    padding: 1rem;
+
+    border-radius: 12px;
+  }
+
+  .fact-summary h3 {
+    font-size: 1rem;
+
+    margin-bottom: 0.6rem;
+  }
+
+  .fact-summary p {
+    line-height: 1.5;
+
+    text-align: left;
+
+    font-size: 0.9rem;
+  }
+
+  .wiki-button {
+    padding: 0.7rem 1.5rem;
+
+    font-size: 0.8rem;
+  }
 }

@@ -978,7 +978,7 @@ h4,
 }
 
 .wiki-button:hover {
-  transform: translateY(-3px);
+  transform: scale(1.05);
   box-shadow: 0 0 18px rgba(127, 179, 255, 0.45);
 }
 
