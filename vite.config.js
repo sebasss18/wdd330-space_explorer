@@ -9,10 +9,10 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: "src/index.html",
-        planets: "src/planets/index.html",
-        favorites: "src/favorites/index.html",
-        apod: "src/apod/index.html",
+        main: "index.html",
+        planets: "planets/index.html",
+        favorites: "favorites/index.html",
+        apod: "apod/index.html",
       },
     },
   },
