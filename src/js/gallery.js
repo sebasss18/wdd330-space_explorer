@@ -53,9 +53,14 @@ export function renderImages(images) {
         <img src="${image}" alt="${title}">
         <div class="card-content">
           <h3>${title}</h3>
-          <button class="preview-btn" type="button" data-id="${index}">
-            Preview
-          </button>
+          <div class="card-buttons">
+            <button class="preview-btn" type="button" data-id="${index}">
+              Preview
+            </button>
+            <button class="favorite-btn" type="button" data-id="${index}">
+              Add to Favorites
+            </button>
+          </div>
         </div>
       </article>
       `,
@@ -65,14 +70,46 @@ export function renderImages(images) {
 
 if (gallery) {
   gallery.addEventListener("click", (event) => {
-    const button = event.target.closest(".preview-btn");
-    if (!button) return;
+    const previewButton = event.target.closest(".preview-btn");
+    const favoriteButton = event.target.closest(".favorite-btn");
 
-    const item = galleryData[button.dataset.id];
-    if (!item) return;
+    if (previewButton) {
+      const item = galleryData[previewButton.dataset.id];
+      if (!item) return;
 
-    openModal(item.title, item.image, item.description);
+      openModal(item.title, item.image, item.description);
+    }
+
+    if (favoriteButton) {
+      const item = galleryData[favoriteButton.dataset.id];
+      if (!item) return;
+
+      addToFavorites(item);
+      favoriteButton.textContent = "Added ✓";
+      favoriteButton.disabled = true;
+    }
   });
+}
+
+function addToFavorites(item) {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  const alreadySaved = favorites.some(
+    (favorite) => favorite.image === item.image,
+  );
+
+  if (alreadySaved) {
+    return;
+  }
+
+  favorites.push({
+    title: item.title,
+    image: item.image,
+    description: item.description,
+    dateSaved: new Date().toLocaleDateString(),
+  });
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
 function openModal(title, image, description) {
