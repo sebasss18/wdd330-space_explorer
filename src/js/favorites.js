@@ -10,27 +10,42 @@ export function loadFavorites() {
 
   favoritesGrid.innerHTML = "";
 
-  favorites.forEach((planet) => {
+  favorites.forEach((favorite, index) => {
     favoritesGrid.insertAdjacentHTML(
       "beforeend",
       `
-      <article class="image-card">
-        <img src="${planet.image}" alt="${planet.name}">
-        <h3>${planet.name}</h3>
-        <p>${planet.description}</p>
-        <small>Saved: ${planet.dateSaved}</small>
-        <button class="remove-btn">Remove</button>
+      <article class="image-card" data-index="${index}">
+        <img src="${favorite.image}" alt="${favorite.name || favorite.title}">
+        <div class="card-content">
+          <h3>${favorite.name || favorite.title}</h3>
+          <p class="favorite-description">${favorite.description}</p>
+          <small>Saved: ${favorite.dateSaved}</small>
+          <button class="remove-btn" type="button">Remove</button>
+        </div>
       </article>
       `,
     );
   });
 
-  document.querySelectorAll(".remove-btn").forEach((button, index) => {
-    button.addEventListener("click", () => {
+  favoritesGrid.querySelectorAll(".remove-btn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const card = button.closest(".image-card");
+      const index = Number(card.dataset.index);
+
       removeFavorite(index);
     });
   });
 }
+
+favoritesGrid?.addEventListener("click", (event) => {
+  const card = event.target.closest(".image-card");
+
+  if (!card || event.target.closest(".remove-btn")) return;
+
+  card.classList.toggle("show-description");
+});
 
 function removeFavorite(index) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
