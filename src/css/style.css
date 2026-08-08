@@ -562,7 +562,7 @@ h4,
   background: rgba(127, 179, 255, 0.22);
 }
 
-/* PREVIEW MODAL*/
+/* PREVIEW MODAL */
 
 .image-modal {
   position: fixed;
@@ -708,29 +708,7 @@ h4,
   padding: 1rem;
 }
 
-/* FAVORITE PLANETS*/
-
-.planets-page {
-  padding: 2rem 1rem;
-  min-height: 100vh;
-}
-
-.planets-container {
-  max-width: 1200px;
-  margin: 30px auto 0;
-  padding: 2rem;
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.planets-container h1 {
-  color: var(--white);
-  font-family: var(--font-title);
-  text-align: center;
-  margin-bottom: 2rem;
-}
+/* FAVORITE PLANETS */
 
 #gallery-grid {
   display: grid;
@@ -795,39 +773,6 @@ h4,
   background: var(--blue);
   color: var(--black);
   transform: scale(1.02);
-}
-
-.planet-hint {
-  color: var(--gray-light);
-  text-align: center;
-  font-size: 0.85rem;
-  margin-top: 1rem;
-  transition: opacity 0.3s ease;
-}
-
-.planet-description {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  color: var(--gray-light);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  transition:
-    max-height 0.5s ease,
-    opacity 0.5s ease,
-    margin 0.5s ease;
-}
-
-.image-card.show-description .planet-hint {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-}
-
-.image-card.show-description .planet-description {
-  max-height: 250px;
-  opacity: 1;
-  margin-top: 1rem;
 }
 
 .remove-btn {

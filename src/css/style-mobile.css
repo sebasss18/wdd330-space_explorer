@@ -401,21 +401,25 @@
 
   .fact-summary h3 {
     font-size: 1rem;
-
     margin-bottom: 0.6rem;
   }
 
   .fact-summary p {
     line-height: 1.5;
-
     text-align: left;
-
     font-size: 0.9rem;
   }
 
   .wiki-button {
     padding: 0.7rem 1.5rem;
-
     font-size: 0.8rem;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+  }
+
+  .card-buttons button {
+    width: 100%;
   }
 }
